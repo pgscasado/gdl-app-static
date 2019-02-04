@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="canvas" class="canvas"></div>
+    <script src="./lib/p5.js"></script>
+    <script>
+      let fosforo, x, y, angle = 0;
+      let frame = 0;
+
+      function setup() {
+        let canvas = createCanvas(windowWidth, windowHeight)
+        frameRate(60)
+        canvas.parent('canvas')
+        fosforo = loadImage('https://raw.githubusercontent.com/pgscasado/gdl-app-static/master/doispalitos/images/fosforo.png')
+        imageMode(CENTER)
+        angleMode(DEGREES)
+
+        x = width/2
+        y = height/2
+      }
+
+      function mouseClicked(){
+
+      }
+
+      function isFrameBetween(from, to) {
+        return frame >= from && frame <= to
+      }
+
+      function draw() {
+
+        angle = angle % 360
+
+        if(isFrameBetween(70,70+44))
+          angle-= 2
+
+        if(isFrameBetween(0,70))
+          x += 6
+          console.log(frame, angle, x, y)
+        
+
+        background(255)
+        
+        
+        push()
+        translate(x,y)
+        fill(255,0,0)
+        ellipse(fosforo.width, 0, 10,10)
+        rotate(angle)
+        fill(0)
+        ellipse(0, 0, 10,10)
+        image(fosforo, fosforo.width/2, 0)
+        
+        pop()
+        frame++
+      }
+    </script>
+  </body>
+</html>
